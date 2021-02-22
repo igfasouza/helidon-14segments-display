@@ -1,0 +1,398 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+   
+    <meta charset="UTF-8">
+    <title>14 segment display</title>
+    
+    <style>
+    * { box-sizing: border-box; }
+    .bcd7sdd {
+      --mdsize: var(--media-md-lg) 700px;
+      --size: var(--smsize, var(--mdsize, 900px));
+      grid-gap: 0px;
+      justify-content: space-around;
+      font-family: "Lucida Sans", monospace;
+    }
+    .bcd7sdd input {
+      margin-right: auto;
+      cursor: pointer;
+    }
+    .bcd7sdd label {
+      font-size: calc(var(--size) / 33);
+      cursor: pointer;
+    }
+    .ssdd {
+      grid-area: ssd;
+      height: calc(var(--size) * 0.50);
+      width: calc(var(--size) * 0.38);
+      background: black;
+      text-align: left;
+      position: relative;
+    }
+    .dream-in-digital {
+      position: absolute;
+      height: calc(var(--size) * 0.5);
+      width: calc(var(--size) * 0.35);
+      left: 13;
+      top: 0;
+      background: rgba(128, 0, 0, 0.33);
+      font-weight: bold;
+      font-size: calc(var(--size) / 20);
+    }
+    .dream-in-digital > span {
+      border-radius: calc(var(--size) / 15);
+      position: absolute;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: rgba(33, 0, 0, 0.25);
+    }
+    .a, .d, .g {
+      width: calc(var(--size) * 0.15);
+      height: calc(var(--size) * 0.05);
+      left: 50%;
+      line-height: calc(var(--size) / 25);
+    }
+    .a {
+      top: calc(var(--size) * 0.05);
+    }
+    .d, .h {
+      top: calc(100% - var(--size) * 0.05);
+    }
+    .g {
+      top: 50%;
+      left: 29%;
+      width: calc(var(--size) * 0.13);
+    }
+    .a, .d {
+      width: calc(var(--size) * 0.20);
+     }
+    .b, .c, .e, .f {
+      width: calc(var(--size) * 0.05);
+      height: calc(var(--size) * 0.15);
+      line-height: calc(var(--size) / 8);
+    }
+    .b, .f {
+      top: 30%;
+    }
+    .c, .e {
+      top: 70%;
+    }
+    .b, .c, .h {
+      left: calc(100% - var(--size) * 0.04);
+    }
+    .e, .f {
+      left: calc(var(--size) * 0.03);
+    }
+    .h {
+      top: calc(100% - var(--size) * 0.04);
+      width: calc(var(--size) * 0.05);
+      height: calc(var(--size) * 0.05);
+    }
+    .i {
+      width: calc(var(--size) * 0.13);
+      height: calc(var(--size) * 0.05);
+      left: 10%;
+      line-height: calc(var(--size) / 25);
+      top: 39%;
+      rotate: 70deg;
+    }
+    .j {
+      width: calc(var(--size) * 0.05);
+      height: calc(var(--size) * 0.14);
+      line-height: calc(var(--size) / 8);
+      top: 31%;
+      left: calc(100% - var(--size) * 0.18);
+    }
+    .k {
+      width: calc(var(--size) * 0.13);
+      height: calc(var(--size) * 0.05);
+      left: 63%;
+      line-height: calc(var(--size) / 25);
+      top: 15%;
+      rotate: -70deg;
+    }
+    .l {
+      width: calc(var(--size) * 0.13);
+      height: calc(var(--size) * 0.05);
+      left: 50%;
+      line-height: calc(var(--size) / 25);
+      top: 77%;
+      rotate: 70deg;
+    }
+    .m {
+      width: calc(var(--size) * 0.05);
+      height: calc(var(--size) * 0.14);
+      line-height: calc(var(--size) / 8);
+      top: 69%;
+      left: calc(100% - var(--size) * 0.18);
+    }
+    .n {
+      width: calc(var(--size) * 0.13);
+      height: calc(var(--size) * 0.05);
+      left: 23%;
+      line-height: calc(var(--size) / 25);
+      top: 53%;
+      rotate: -70deg;
+    }
+    .o {
+      width: calc(var(--size) * 0.13);
+      height: calc(var(--size) * 0.05);
+      left: 70%;
+      line-height: calc(var(--size) / 25);
+      top: 50%;
+    }
+
+    .ssdd {
+      --A: initial;
+      --B: initial;
+      --C: initial;
+      --D: initial;
+      --E: initial;
+      --F: initial;
+      --G: initial;
+      --H: initial;
+      --I: initial;
+      --J: initial;
+      --K: initial;
+      --L: initial;
+      --M: initial;
+      --N: initial;
+      --O: initial;
+    }
+    .bcd7sdd input:nth-of-type(1):checked ~ .ssdd {
+      --A: ;
+    }
+    .bcd7sdd input:nth-of-type(2):checked ~ .ssdd {
+      --B: ;
+    }
+    .bcd7sdd input:nth-of-type(3):checked ~ .ssdd {
+      --C: ;
+    }
+    .bcd7sdd input:nth-of-type(4):checked ~ .ssdd {
+      --D: ;
+    }
+    .bcd7sdd input:nth-of-type(5):checked ~ .ssdd {
+      --E: ;
+    }
+    .bcd7sdd input:nth-of-type(6):checked ~ .ssdd {
+      --F: ;
+    }
+    .bcd7sdd input:nth-of-type(7):checked ~ .ssdd {
+      --G: ;
+    }
+    .bcd7sdd input:nth-of-type(8):checked ~ .ssdd {
+      --H: ;
+    }
+    .bcd7sdd input:nth-of-type(9):checked ~ .ssdd {
+      --I: ;
+    }
+    .bcd7sdd input:nth-of-type(10):checked ~ .ssdd {
+      --J: ;
+    }
+    .bcd7sdd input:nth-of-type(11):checked ~ .ssdd {
+      --K: ;
+    }
+    .bcd7sdd input:nth-of-type(12):checked ~ .ssdd {
+      --L: ;
+    }
+    .bcd7sdd input:nth-of-type(13):checked ~ .ssdd {
+      --M: ;
+    }
+    .bcd7sdd input:nth-of-type(14):checked ~ .ssdd {
+      --N: ;
+    }
+    .bcd7sdd input:nth-of-type(15):checked ~ .ssdd {
+      --O: ;
+    }
+
+    .ssdd {
+      --a: var(--A);
+      --b: var(--B);
+      --c: var(--C);
+      --d: var(--D);
+      --e: var(--E);
+      --f: var(--F);
+      --g: var(--G);
+      --h: var(--H);
+      --i: var(--I);
+      --j: var(--J);
+      --k: var(--K);
+      --l: var(--L);
+      --m: var(--M);
+      --n: var(--N);
+      --o: var(--O);
+    }
+
+    .a {
+      --on: var(--a) #e00;
+      background: var(--on, #380000);
+    }
+    .b {
+      --on: var(--b) #e00;
+      background: var(--on, #380000);
+    }
+    .c {
+      --on: var(--c) #e00;
+      background: var(--on, #380000);
+    }
+    .d {
+      --on: var(--d) #e00;
+      background: var(--on, #380000);
+    }
+    .e {
+      --on: var(--e) #e00;
+      background: var(--on, #380000);
+    }
+    .f {
+      --on: var(--f) #e00;
+      background: var(--on, #380000);
+    }
+    .g {
+      --on: var(--g) #e00;
+      background: var(--on, #380000);
+    }
+    .h {
+      --on: var(--h) #e00;
+      background: var(--on, #380000);
+    }
+    .i {
+      --on: var(--i) #e00;
+      background: var(--on, #380000);
+    }
+    .j {
+      --on: var(--j) #e00;
+      background: var(--on, #380000);
+    }
+    .k {
+      --on: var(--k) #e00;
+      background: var(--on, #380000);
+    }
+    .l {
+      --on: var(--l) #e00;
+      background: var(--on, #380000);
+    }
+    .m {
+      --on: var(--m) #e00;
+      background: var(--on, #380000);
+    }
+    .n {
+      --on: var(--n) #e00;
+      background: var(--on, #380000);
+    }
+    .o {
+      --on: var(--o) #e00;
+      background: var(--on, #380000);
+    }
+    .a, .b, .c, .d, .e, .f, .g, .h, .i, .j, .k, .l, .m, .n, .o{
+      box-shadow: 0px 0px 10px var(--on, black);
+    }
+  </style>
+   
+      <script type = "text/javascript">
+         var ws;
+         function webSocketTest() {
+            if ("WebSocket" in window) {
+               document.getElementById("title").innerHTML = "WebSocket is supported by your Browser!";
+               ws = new WebSocket("ws://localhost:8080/websocket/board");
+               ws.onopen = function() {
+                  document.getElementById("result").innerHTML += "<p>WebSocket openned</p>";
+               };
+               ws.onmessage = function (evt) { 
+                  var received_msg = evt.data;
+                  document.getElementById("result").innerHTML += "<p>Message is received: " + escapeHtml(received_msg) + "</p>";
+               };
+               ws.onclose = function() { 
+                  document.getElementById("result").innerHTML += "<p>WebSocket is closed</p>";
+               };
+            } else {
+               document.getElementById("title").innerHTML = "WebSocket NOT supported by your Browser!";
+            }
+         }
+         function sendMessageRest(message){
+              var xhttp = new XMLHttpRequest();
+              xhttp.open("POST", "/rest/board", true);
+              xhttp.setRequestHeader("Content-type", "text/plain");
+              xhttp.send(message);
+         }
+         function escapeHtml(unsafe) {
+              return unsafe
+                 .replace(/&/g, "&amp;")
+                 .replace(/</g, "&lt;")
+                 .replace(/>/g, "&gt;")
+                 .replace(/"/g, "&quot;")
+                 .replace(/'/g, "&#039;");
+         }
+      </script>
+        
+   </head>
+   
+   <body onload="webSocketTest()">
+      <h1 id="title"></h1>
+      <div>
+         <div id="result"></div>
+      </div>
+      
+      
+      <form id="display">
+    
+    <div class="bcd7sdd">
+    
+    <label for="segment1">1</label>
+    <label for="segment2">2</label>
+    <label for="segment3">3</label>
+    <label for="segment4">4</label>
+    <label for="segment5">5</label>
+    <label for="segment6">6</label>
+    <label for="segment7">7</label>
+    <label for="segment8">8</label>
+    <label for="segment9">9</label>
+    <label for="segment10">10</label>
+    <label for="segment11">11</label>
+    <label for="segment12">12</label>
+    <label for="segment13">13</label>
+    <label for="segment14">14</label>
+    <label for="segment15">15</label>
+    <br>
+    <input id="segment1" name="segment1" type="checkbox" onclick="sendMessageRest('segment1 '+document.getElementById('segment1').checked);" style="margin-right:-4px" >
+    <input id="segment2" name="segment2" type="checkbox" onclick="sendMessageRest('segment2 '+document.getElementById('segment2').checked);" style="margin-right:0px" >
+    <input id="segment3" name="segment3" type="checkbox" onclick="sendMessageRest('segment3 '+document.getElementById('segment3').checked);">
+    <input id="segment4" name="segment4" type="checkbox" onclick="sendMessageRest('segment4 '+document.getElementById('segment4').checked);">
+    <input id="segment5" name="segment5" type="checkbox" onclick="sendMessageRest('segment5 '+document.getElementById('segment5').checked);">
+    <input id="segment6" name="segment6" type="checkbox" onclick="sendMessageRest('segment6 '+document.getElementById('segment6').checked);" style="margin-right:-1px" >
+    <input id="segment7" name="segment7" type="checkbox" onclick="sendMessageRest('segment7 '+document.getElementById('segment7').checked);" style="margin-right:-1px" >
+    <input id="segment8" name="segment8" type="checkbox" onclick="sendMessageRest('segment8 '+document.getElementById('segment8').checked);" style="margin-right:-1px" >
+    <input id="segment9" name="segment9" type="checkbox" onclick="sendMessageRest('segment9 '+document.getElementById('segment9').checked);" style="margin-right:-1px" >
+    <input id="segment10" name="segment10" type="checkbox" onclick="sendMessageRest('segment10 '+document.getElementById('segment10').checked);" style="margin-right:14px" >
+    <input id="segment11" name="segment11" type="checkbox" onclick="sendMessageRest('segment11 '+document.getElementById('segment11').checked);" style="margin-right:14px" >
+    <input id="segment12" name="segment12" type="checkbox" onclick="sendMessageRest('segment12 '+document.getElementById('segment12').checked);" style="margin-right:18px" >
+    <input id="segment13" name="segment13" type="checkbox" onclick="sendMessageRest('segment13 '+document.getElementById('segment13').checked);" style="margin-right:14px" >
+    <input id="segment14" name="segment14" type="checkbox" onclick="sendMessageRest('segment14 '+document.getElementById('segment14').checked);" style="margin-right:14px" >
+    <input id="segment15" name="segment15" type="checkbox" onclick="sendMessageRest('segment15 '+document.getElementById('segment15').checked);">
+    
+    <div class="ssdd">
+      <div class="dream-in-digital">
+        <span class="a">a</span>
+        <span class="b">b</span>
+        <span class="c">c</span>
+        <span class="d">d</span>
+        <span class="e">e</span>
+        <span class="f">f</span>
+        <span class="g">g</span>
+        <span class="h">h</span>
+        <span class="i">i</span>
+        <span class="j">j</span>
+        <span class="k">k</span>
+        <span class="l">l</span>
+        <span class="m">m</span>
+        <span class="n">n</span>
+        <span class="o">o</span>
+      </div>
+    </div>
+  </div>
+    
+  </form>
+      
+      
+   </body>
+</html>
